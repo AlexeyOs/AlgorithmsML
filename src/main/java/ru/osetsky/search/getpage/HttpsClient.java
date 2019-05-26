@@ -1,39 +1,27 @@
 package ru.osetsky.search.getpage;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.cert.Certificate;
 import java.io.*;
 
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLPeerUnverifiedException;
 
 public class HttpsClient{
 
-    public static void main(String[] args)
-    {
-        new HttpsClient().testIt();
-    }
-
-    private void testIt(){
-        String https_url = "https://www.google.com/";
+    public static String getHttpsClient(String https_url){
         URL url;
-
         try {
             url = new URL(https_url);
             HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
-
-            //dumpl all cert info
             print_https_cert(con);
-
-            //dump all the content
-            print_content(con);
+            return print_content(con);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-    private void print_https_cert(HttpsURLConnection con){
+    private static void print_https_cert(HttpsURLConnection con){
         if(con!=null){
             try {
                 System.out.println("Response Code : " + con.getResponseCode());
@@ -54,23 +42,22 @@ public class HttpsClient{
         }
     }
 
-    private void print_content(HttpsURLConnection con){
+    private static String print_content(HttpsURLConnection con){
+        String input = null;
+        String output = null;
         if(con!=null){
             try {
                 System.out.println("****** Content of the URL ********");
                 BufferedReader br = new BufferedReader( new InputStreamReader(con.getInputStream()) );
-
-                String input;
-
                 while ((input = br.readLine()) != null){
                     System.out.println(input);
                 }
-
                 br.close();
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        return input;
     }
 }

@@ -7,26 +7,20 @@ import java.net.URL;
 import org.jsoup.Jsoup;
 
 public class HttpClient {
-    public static void main(String[] args) throws IOException {
+
+    public static String getHttpClient(String http_url) {
+        String string = null;
         try {
-            URL url = new URL("http://www.patriarchia.ru/");
-
-            try {
-                LineNumberReader reader = new LineNumberReader(new InputStreamReader(url.openStream()));
-                String string = reader.readLine();
-                while (string != null) {
-//                    System.out.println(string);
-                    System.out.println(Jsoup.parse(string).text());
-                    string = reader.readLine();
-                }
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            LineNumberReader reader = new LineNumberReader(new InputStreamReader(new URL(http_url).openStream()));
+            string = reader.readLine();
+            while (string != null) {
+                System.out.println(Jsoup.parse(string).text());
+                string = reader.readLine();
             }
-
-        } catch (MalformedURLException ex) {
-            ex.printStackTrace();
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
+        return string;
     }
 }
