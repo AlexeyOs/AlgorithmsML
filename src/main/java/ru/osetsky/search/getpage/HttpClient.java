@@ -6,7 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import org.jsoup.Jsoup;
 
-public class IfHtml {
+public class HttpClient {
     public static void main(String[] args) throws IOException {
         try {
             URL url = new URL("http://www.patriarchia.ru/");
