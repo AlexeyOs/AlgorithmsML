@@ -1,5 +1,7 @@
 package ru.osetsky.search.getpage;
 
+import org.jsoup.Jsoup;
+
 import java.net.URL;
 import java.security.cert.Certificate;
 import java.io.*;
@@ -13,12 +15,30 @@ public class HttpsClient{
         try {
             url = new URL(https_url);
             HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
-            print_https_cert(con);
             return print_content(con);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private static String print_content(HttpsURLConnection con){
+        String input = null;
+        StringBuilder output = new StringBuilder();
+        if(con!=null){
+            try {
+                System.out.println("****** Content of the URL ********");
+                BufferedReader br = new BufferedReader( new InputStreamReader(con.getInputStream()) );
+                while ((input = br.readLine()) != null){
+                    output.append(Jsoup.parse(input).text());
+                }
+                br.close();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return output.toString();
     }
 
     private static void print_https_cert(HttpsURLConnection con){
@@ -40,24 +60,5 @@ public class HttpsClient{
                 e.printStackTrace();
             }
         }
-    }
-
-    private static String print_content(HttpsURLConnection con){
-        String input = null;
-        String output = null;
-        if(con!=null){
-            try {
-                System.out.println("****** Content of the URL ********");
-                BufferedReader br = new BufferedReader( new InputStreamReader(con.getInputStream()) );
-                while ((input = br.readLine()) != null){
-                    System.out.println(input);
-                }
-                br.close();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return input;
     }
 }
