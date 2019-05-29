@@ -1,13 +1,19 @@
 package ru.osetsky.search.getpage;
 
 import org.jsoup.Jsoup;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import ru.osetsky.search.repositories.DbConnect;
 
 import java.net.URL;
 import java.security.cert.Certificate;
 import java.io.*;
+import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.net.ssl.HttpsURLConnection;
 
+@Component
 public class HttpsClient{
 
     public static String getHttpsClient(String https_url){
@@ -37,6 +43,13 @@ public class HttpsClient{
             catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        DbConnect dbConnect = null;
+        try {
+            dbConnect = new DbConnect();
+            dbConnect.addIntoTableText("0",output.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return output.toString();
     }

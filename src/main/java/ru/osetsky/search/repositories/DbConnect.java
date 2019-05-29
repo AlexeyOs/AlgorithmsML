@@ -2,11 +2,12 @@ package ru.osetsky.search.repositories;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.sqlite.JDBC;
 
 import java.sql.*;
 
-
+@Component
 public class DbConnect {
 
     private static final Logger LOG = LoggerFactory.getLogger(DbConnect.class);
@@ -78,11 +79,12 @@ public class DbConnect {
         }
     }
 
-    public void addIntoTable(String name, String href) {
+    public void addIntoTableText(String id, String text) {
         try {
-                PreparedStatement st = connection.prepareStatement("INSERT INTO PARCE(name, href) values(?,?)");
-                st.setString(1, name);
-                st.setString(2, href);
+                PreparedStatement st = connection.prepareStatement("INSERT INTO TEXT(ID_TEXT,TEXT, DATE_TEXT) values(?,?,?)");
+                st.setString(1, id);
+                st.setString(2, text);
+                st.setDate(3, null);
                 st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
