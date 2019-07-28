@@ -47,6 +47,8 @@ public class HttpsClient{
         DbConnect dbConnect = null;
         try {
             dbConnect = new DbConnect();
+            dbConnect.updateTableSites(0, "BLOG", "",https_url );
+            dbConnect.updateTableText("0",output.toString());
 //            dbConnect.addIntoTableSites(0, "BLOG", "",https_url );
 //            dbConnect.addIntoTableText("0",output.toString());
         } catch (SQLException e) {

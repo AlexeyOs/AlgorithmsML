@@ -12,7 +12,7 @@ public class DbConnect {
 
     private static final Logger LOG = LoggerFactory.getLogger(DbConnect.class);
 
-    private static final String URL = "jdbc:sqlite:D:/codeStudies/developer/search/sqlite/search.db";
+    private static final String URL = "jdbc:sqlite:sqlite/search.db";
 
     private Connection connection;
 
@@ -91,6 +91,18 @@ public class DbConnect {
         }
     }
 
+    public void updateTableText(String id, String text) {
+        try {
+            PreparedStatement st = connection.prepareStatement("UPDATE TEXT SET ID_TEXT = ?,TEXT = ?, DATE_TEXT =?");
+            st.setString(1, id);
+            st.setString(2, text);
+            st.setDate(3, null);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addIntoTableCategories(String url, String id_text) {
         try {
             PreparedStatement st = connection.prepareStatement("INSERT INTO SITES(URL, ID_TEXT) values(?,?)");
@@ -115,4 +127,19 @@ public class DbConnect {
             e.printStackTrace();
         }
     }
+
+
+    public void updateTableSites(int id, String name, String description, String url) {
+        try {
+            PreparedStatement st = connection.prepareStatement("UPDATE CATEGORIES SET ID_CATEGORY=?, NAME=?,DESCRIPTION=?,URL=?");
+            st.setInt(1, id);
+            st.setString(2, name);
+            st.setString(3, description);
+            st.setString(4, url);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
