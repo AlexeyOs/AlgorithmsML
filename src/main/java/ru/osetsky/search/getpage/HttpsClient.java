@@ -21,14 +21,14 @@ public class HttpsClient{
         try {
             url = new URL(https_url);
             HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
-            return print_content(con);
+            return print_content(con, https_url);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private static String print_content(HttpsURLConnection con){
+    private static String print_content(HttpsURLConnection con, String https_url){
         String input = null;
         StringBuilder output = new StringBuilder();
         if(con!=null){
@@ -47,7 +47,8 @@ public class HttpsClient{
         DbConnect dbConnect = null;
         try {
             dbConnect = new DbConnect();
-            dbConnect.addIntoTableText("0",output.toString());
+//            dbConnect.addIntoTableSites(0, "BLOG", "",https_url );
+//            dbConnect.addIntoTableText("0",output.toString());
         } catch (SQLException e) {
             e.printStackTrace();
         }

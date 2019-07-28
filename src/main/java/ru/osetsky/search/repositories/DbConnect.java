@@ -90,4 +90,29 @@ public class DbConnect {
             e.printStackTrace();
         }
     }
+
+    public void addIntoTableCategories(String url, String id_text) {
+        try {
+            PreparedStatement st = connection.prepareStatement("INSERT INTO SITES(URL, ID_TEXT) values(?,?)");
+            st.setString(1, url);
+            st.setString(2, id_text);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addIntoTableSites(int id, String name, String description, String url) {
+        try {
+            PreparedStatement st = connection.prepareStatement("INSERT INTO CATEGORIES(ID_CATEGORY, NAME,DESCRIPTION,URL) " +
+                    "values(?,?,?,?)");
+            st.setInt(1, id);
+            st.setString(2, name);
+            st.setString(3, description);
+            st.setString(4, url);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
