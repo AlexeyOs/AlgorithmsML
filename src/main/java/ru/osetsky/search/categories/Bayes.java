@@ -24,11 +24,11 @@ public class Bayes {
         bayes.learn("medic", Arrays.asList(medic));
 
         // Here are two unknown sentences to classify.
-        String[] unknownText1 = "today is a sunny day".split("\\s");
-        String[] unknownText2 = "there will be rain".split("\\s");
+        String[] unknownText1 = "медицинский осмотр".split("\\s");
+        String[] unknownText2 = "музыкальный композиция".split("\\s");
 
         System.out.println( // will output "music"
-                bayes.classify(Arrays.asList(music)).getCategory());
+                bayes.classify(Arrays.asList(unknownText1)).getCategory());
         System.out.println( // will output "medic"
                 bayes.classify(Arrays.asList(unknownText2)).getCategory());
 
