@@ -2,8 +2,8 @@ package ru.osetsky.search.categories;
 
 import de.daslaboratorium.machinelearning.classifier.Classifier;
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
-import org.tartarus.snowball.ext.russianStemmer;
 import ru.osetsky.search.utilities.ReaderFile;
+import ru.osetsky.search.utilities.Stemming;
 
 import java.util.Arrays;
 
@@ -17,6 +17,8 @@ public class Bayes {
         String[] music = ReaderFile.readArraysOfStringFromFile("music.txt");
         String[] medic = ReaderFile.readArraysOfStringFromFile("medic.txt");
 
+        music = Stemming.setRusStemming(music);
+        medic = Stemming.setRusStemming(medic);
         // Learn by classifying examples.
         // New categories can be added on the fly, when they are first used.
         // A classification consists of a category and a list of features
@@ -26,16 +28,10 @@ public class Bayes {
 
         // Here are two unknown sentences to classify.
         String[] unknownText1 = "медицинский осмотр".split("\\s");
-        String[] unknownText2 = "музыкальный композиция".split("\\s");
+        String[] unknownText2 = "музыкальная композиция".split("\\s");
 
-        // Пример обработки для русского языка стемминга Портрета
-        russianStemmer stemmer = new russianStemmer();
-        for (String unknownWord:unknownText2) {
-            stemmer.setCurrent(unknownWord);
-            if (stemmer.stem()){
-                System.out.println(stemmer.getCurrent());
-            }
-        }
+        unknownText1 = Stemming.setRusStemming(unknownText1);
+        unknownText2 = Stemming.setRusStemming(unknownText2);
 
         System.out.println( // will output "music"
                 bayes.classify(Arrays.asList(unknownText1)).getCategory());
