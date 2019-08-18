@@ -2,6 +2,7 @@ package ru.osetsky.search.categories;
 
 import de.daslaboratorium.machinelearning.classifier.Classifier;
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
+import org.tartarus.snowball.ext.russianStemmer;
 import ru.osetsky.search.utilities.ReaderFile;
 
 import java.util.Arrays;
@@ -26,6 +27,15 @@ public class Bayes {
         // Here are two unknown sentences to classify.
         String[] unknownText1 = "медицинский осмотр".split("\\s");
         String[] unknownText2 = "музыкальный композиция".split("\\s");
+
+        // Пример обработки для русского языка стемминга Портрета
+        russianStemmer stemmer = new russianStemmer();
+        for (String unknownWord:unknownText2) {
+            stemmer.setCurrent(unknownWord);
+            if (stemmer.stem()){
+                System.out.println(stemmer.getCurrent());
+            }
+        }
 
         System.out.println( // will output "music"
                 bayes.classify(Arrays.asList(unknownText1)).getCategory());
