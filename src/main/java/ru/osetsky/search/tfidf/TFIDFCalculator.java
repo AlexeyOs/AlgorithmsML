@@ -1,5 +1,9 @@
 package ru.osetsky.search.tfidf;
+import ru.osetsky.search.utilities.ReaderFile;
+import ru.osetsky.search.utilities.Stemming;
+
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -63,6 +67,51 @@ public class TFIDFCalculator {
         System.out.println("TF-IDF (ipsum) = " + tfidf2);
 
 
+    }
+
+    /**
+     * Высчитывает вес каждого выходящего слова для каждой заданной категории,
+     * после чего веса суммируются по категориям, и возвращается максимальная сумма весов для одной категории.
+     * @param features
+     * @return
+     */
+    public static double getIndexAllInputWorlds (Collection<String> features) {
+        // Два примера для изучения.
+        String[] music = ReaderFile.readArraysOfStringFromFile("music.txt");
+        String[] medic = ReaderFile.readArraysOfStringFromFile("medic.txt");
+
+        music = Stemming.setRusStemming(music);
+        medic = Stemming.setRusStemming(medic);
+
+        List<String> doc1 = Arrays.asList(music);
+        List<String> doc2 = Arrays.asList(medic);
+        List<List<String>> documents = Arrays.asList(doc1, doc2);
+
+        TFIDFCalculator calculator = new TFIDFCalculator();
+        double sumtridf1 = 0;
+        //doc1
+        for (String feature:features) {
+            double tfidf1 = calculator.tfIdf(doc1, documents, feature);
+            if (!Double.isNaN(tfidf1)) {
+                sumtridf1 = sumtridf1 + tfidf1;
+            }
+        }
+//        System.out.println("TF-IDF (doc1) = " + sumtridf1);
+        //doc2
+        double sumtridf2 = 0;
+        for (String feature:features) {
+            double tfidf2 = calculator.tfIdf(doc2, documents, feature);
+            if (!Double.isNaN(tfidf2)) {
+                sumtridf2 = sumtridf2 + tfidf2;
+            }
+        }
+
+//        System.out.println("TF-IDF (doc2) = " + sumtridf2);
+        if (sumtridf1 > sumtridf2) {
+            return sumtridf1;
+        } else {
+            return sumtridf2;
+        }
     }
 
 

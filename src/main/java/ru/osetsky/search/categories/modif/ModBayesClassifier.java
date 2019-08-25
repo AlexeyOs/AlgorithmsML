@@ -5,6 +5,8 @@ import de.daslaboratorium.machinelearning.classifier.Classifier;
 
 import de.daslaboratorium.machinelearning.classifier.Classification;
 import de.daslaboratorium.machinelearning.classifier.Classifier;
+import ru.osetsky.search.tfidf.TFIDFCalculator;
+
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -19,8 +21,16 @@ public class ModBayesClassifier<T, K> extends Classifier<T, K> {
         float product = 1.0F;
 
         Object feature;
-        for(Iterator var4 = features.iterator(); var4.hasNext(); product *= this.featureWeighedAverage((T) feature, category)) {
-            feature = var4.next();
+        Collection<String> featuresStr = (Collection<String>) features;
+        int sumTfidfWeigft = (int)TFIDFCalculator.getIndexAllInputWorlds(featuresStr);
+        if (sumTfidfWeigft > 0) {
+            for(Iterator var4 = features.iterator(); var4.hasNext(); product *= this.featureWeighedAverage((T) feature, category,null,sumTfidfWeigft,0.5F)) {
+                feature = var4.next();
+            }
+        } else {
+            for(Iterator var4 = features.iterator(); var4.hasNext(); product *= this.featureWeighedAverage((T) feature, category,null,0.01F,0.5F)) {
+                feature = var4.next();
+            }
         }
 
         return product;
