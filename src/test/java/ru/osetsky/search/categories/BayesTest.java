@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class BayesTest {
 
     @Test
-    public void modifiedBayesmethodWithTfIdf() throws Exception {
+    public void modifiedBayesmethodWithTfIdf() {
         // Создан новый классификатор Байеса со строковыми категориями и строковыми элементами.
         ModBayesClassifier<String, String> bayes = new ModBayesClassifier<String, String>();
 
@@ -84,7 +84,7 @@ public class BayesTest {
     }
 
     @Test
-    public void sourceBayesmethodWithTfIdf() throws Exception {
+    public void sourceBayesmethodWithTfIdf() {
         // Создан новый классификатор Байеса со строковыми категориями и строковыми элементами.
         Classifier<String, String> bayes = new BayesClassifier<String, String>();
 
