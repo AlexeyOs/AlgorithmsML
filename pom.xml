@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.osetsky</groupId>
-	<artifactId>search</artifactId>
+	<artifactId>algorithmsML</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>search</name>
+	<name>algorithmsML</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
