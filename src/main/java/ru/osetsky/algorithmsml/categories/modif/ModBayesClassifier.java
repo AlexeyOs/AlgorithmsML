@@ -1,11 +1,9 @@
-package ru.osetsky.search.categories.modif;
+package ru.osetsky.algorithmsml.categories.modif;
 
 import de.daslaboratorium.machinelearning.classifier.Classification;
 import de.daslaboratorium.machinelearning.classifier.Classifier;
 
-import de.daslaboratorium.machinelearning.classifier.Classification;
-import de.daslaboratorium.machinelearning.classifier.Classifier;
-import ru.osetsky.search.tfidf.TFIDFCalculator;
+import ru.osetsky.algorithmsml.tfidf.TFIDFCalculator;
 
 import java.util.Collection;
 import java.util.Comparator;

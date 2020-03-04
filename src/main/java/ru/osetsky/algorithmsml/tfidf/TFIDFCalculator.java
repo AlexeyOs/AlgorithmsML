@@ -1,6 +1,6 @@
-package ru.osetsky.search.tfidf;
-import ru.osetsky.search.utilities.ReaderFile;
-import ru.osetsky.search.utilities.Stemming;
+package ru.osetsky.algorithmsml.tfidf;
+import ru.osetsky.algorithmsml.utilities.ReaderFile;
+import ru.osetsky.algorithmsml.utilities.Stemming;
 
 import java.util.Arrays;
 import java.util.Collection;

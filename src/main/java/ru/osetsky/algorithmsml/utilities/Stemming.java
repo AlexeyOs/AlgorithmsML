@@ -1,4 +1,4 @@
-package ru.osetsky.search.utilities;
+package ru.osetsky.algorithmsml.utilities;
 
 import org.tartarus.snowball.ext.russianStemmer;
 

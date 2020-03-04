@@ -1,10 +1,9 @@
-package ru.osetsky.search.categories;
+package ru.osetsky.algorithmsml.categories;
 
 import de.daslaboratorium.machinelearning.classifier.Classification;
-import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
-import ru.osetsky.search.categories.modif.ModBayesClassifier;
-import ru.osetsky.search.utilities.ReaderFile;
-import ru.osetsky.search.utilities.Stemming;
+import ru.osetsky.algorithmsml.categories.modif.ModBayesClassifier;
+import ru.osetsky.algorithmsml.utilities.ReaderFile;
+import ru.osetsky.algorithmsml.utilities.Stemming;
 
 import java.util.Arrays;
 import java.util.Collection;
