@@ -1,4 +1,4 @@
-package ru.osetsky.algorithmsml.categories.modif;
+package ru.osetsky.algorithmsml.categories.bayes;
 
 import de.daslaboratorium.machinelearning.classifier.Classification;
 import de.daslaboratorium.machinelearning.classifier.Classifier;

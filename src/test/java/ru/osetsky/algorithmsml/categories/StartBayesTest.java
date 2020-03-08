@@ -4,7 +4,7 @@ import de.daslaboratorium.machinelearning.classifier.Classification;
 import de.daslaboratorium.machinelearning.classifier.Classifier;
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
 import org.junit.Test;
-import ru.osetsky.algorithmsml.categories.modif.ModBayesClassifier;
+import ru.osetsky.algorithmsml.categories.bayes.ModBayesClassifier;
 import ru.osetsky.algorithmsml.utilities.ReaderFile;
 import ru.osetsky.algorithmsml.utilities.Stemming;
 
@@ -14,7 +14,7 @@ import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
-public class BayesTest {
+public class StartBayesTest {
 
     @Test
     public void modifiedBayesmethodWithTfIdf() {

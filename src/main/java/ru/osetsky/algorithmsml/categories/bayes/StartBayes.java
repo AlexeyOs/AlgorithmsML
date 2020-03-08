@@ -1,7 +1,6 @@
-package ru.osetsky.algorithmsml.categories;
+package ru.osetsky.algorithmsml.categories.bayes;
 
 import de.daslaboratorium.machinelearning.classifier.Classification;
-import ru.osetsky.algorithmsml.categories.modif.ModBayesClassifier;
 import ru.osetsky.algorithmsml.utilities.ReaderFile;
 import ru.osetsky.algorithmsml.utilities.Stemming;
 
@@ -9,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class Bayes {
+public class StartBayes {
 
     public static void main(String[] args) {
         // Создан новый классификатор Байеса со строковыми категориями и строковыми элементами.
