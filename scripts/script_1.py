@@ -154,7 +154,7 @@ import warnings
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
     results = []
-    for clf, name in [(BernoulliNB(), 'BernoulliNB'), (LinearSVC(C=0.1), 'SVC'),
+    for clf, name in [(BernoulliNB(), 'Native Bayes'), (LinearSVC(C=0.1), 'SVC'),
                       (DecisionTreeClassifier(max_depth=15), 'DecisionTreeClassifier',),
                       (LogisticRegression(C=5), 'LogisticRegression')]:
         #     Y_train.reshape(Y_train.shape[0],)
