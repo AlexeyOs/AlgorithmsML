@@ -122,11 +122,15 @@ from sklearn.preprocessing import LabelEncoder
 
 
 # cv = TfidfVectorizer(ngram_range=(1, 2))
+print(data[:, 1])
 cv = TfidfVectorizer()
+# Задаются веса для выборки из категории спам
 X = cv.fit_transform(data[:, 1])
 print(X[0])
 
 le = LabelEncoder()
+print(data[:, 0])
+# Категории spam и ham преобразовываются в 0 и 1
 Y = le.fit_transform(data[:, 0])
 print(Y[0])
 
@@ -148,15 +152,22 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 import warnings
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
     results = []
-    for clf, name in [(BernoulliNB(), 'Native Bayes'), (LinearSVC(C=0.1), 'SVC'),
-                      (DecisionTreeClassifier(max_depth=15), 'DecisionTreeClassifier',),
-                      (LogisticRegression(C=5), 'LogisticRegression')]:
+    for clf, name in [
+                      (BernoulliNB(alpha=0.4), 'Native Bayes'),
+                      (LinearSVC(C=9), 'SVC'),
+                      (DecisionTreeClassifier(max_depth=26), 'DecisionTreeClassifier',),
+                      # (LogisticRegression(C=12), 'LogisticRegression'),
+                      # (RandomForestClassifier(max_depth=2, random_state=0), 'RandomForest'),
+                      (KNeighborsClassifier(n_neighbors=13), 'KNN')
+    ]:
         #     Y_train.reshape(Y_train.shape[0],)
         #     Y_test.reshape(Y_test.shape[0])
         clf.fit(X_train, Y_train)
